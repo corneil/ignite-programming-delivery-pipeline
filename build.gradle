@@ -1,0 +1,118 @@
+plugins {
+    id 'org.asciidoctor.convert' version '1.5.3'
+    id 'com.github.jruby-gradle.base' version '1.2.1'
+}
+
+repositories {
+    jcenter()
+}
+
+group 'com.github.corneil'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    webJars
+}
+
+dependencies {
+    webJars 'org.webjars.bower:reveal.js:3.2.0'
+    webJars 'org.webjars.bower:opal:0.7.0'
+    webJars('org.webjars.bower:asciidoctor.js:1.5.2') {
+        exclude(group: 'org.webjars.bower', module: 'opal')
+    }
+
+    gems 'rubygems:asciidoctor-diagram:1.4.0'
+    gems 'rubygems:slim:3.0.6'
+    gems 'rubygems:thread_safe:0.3.5'
+}
+
+def presentationFolder = new File(project.buildDir, 'presentation')
+
+defaultTasks = ['asciidoctor']
+
+def graphvizDotLoc() {
+    def result = System.getProperty('os.name').toLowerCase().contains('win') ? 'dot.exe' : 'dot'
+    if (rootProject.hasProperty('graphvizdot')) {
+        result = graphvizdot
+    } else {
+        def graphVizDotEnv = System.getenv('GRAPHVIZ_DOT')
+        if (graphVizDotEnv) {
+            result = graphVizDotEnv
+        }
+    }
+    return result
+}
+
+asciidoctorj {
+    version = '1.5.4'
+}
+
+asciidoctor {
+    separateOutputDirs false
+    requires 'asciidoctor-diagram', 'asciidoctor-diagram/plantuml', 'tilt', 'slim', 'thread_safe'
+    gemPath = jrubyPrepare.outputDir
+    sourceDir = file('src/asciidoc')
+    sources {
+        include 'presentation.adoc'
+    }
+    resources {
+        from('src/asciidoc') {
+            include '**/*'
+            exclude '**/*.adoc'
+        }
+    }
+    outputDir = presentationFolder
+    backends 'html5'
+    attributes 'build-gradle': file('build.gradle'),
+            'source-highlighter': 'coderay',
+            'imagesdir': 'images',
+            'toc': 'left',
+            'icons': 'font',
+            'setanchors': 'true',
+            'idprefix': '',
+            'idseparator': '-',
+            'backend': 'revealjs',
+            'docinfo1': 'true',
+            'revealjs_theme': 'simple',
+            'revealjs_transition': 'linear',
+            'revealjs_history': 'false',
+            'revealjs_slideNumber': 'true',
+            'revealjs_autoSlide': 15000,
+            'revealjs_transitionSpeed': 'fast',
+            'graphvizdot': graphvizDotLoc()
+
+    options template_dirs: [new File(project.projectDir, 'templates/slim')]
+}
+
+def webJars = new File(project.buildDir, 'webjars')
+task expandWebJars(type: Copy) {
+    into webJars
+    configurations.webJars.resolve().each {
+        from zipTree(it.absoluteFile)
+    }
+}
+
+task copyWebJars(type: Copy, dependsOn: expandWebJars) {
+    destinationDir new File(project.projectDir, 'src/asciidoc')
+    into('reveal.js') {
+        from new File(webJars, 'META-INF/resources/webjars/reveal.js/3.2.0')
+    }
+    into('asciidoctor.js') {
+        from new File(webJars, 'META-INF/resources/webjars/asciidoctor.js/1.5.2/dist')
+    }
+    into('headjs') {
+        from new File(webJars, 'META-INF/resources/webjars/headjs/1.0.3/dist/1.0.0')
+    }
+}
+
+task packagePresentation(type: Zip, dependsOn: asciidoctor) {
+    from presentationFolder
+    archiveName "${baseName}.zip"
+}
+
+asciidoctor.dependsOn copyWebJars, jrubyPrepare
+assemble.dependsOn packagePresentation

@@ -1,0 +1,71 @@
+:revealjs_center: true
+:images: ./images
+
+== Programming the Software Delivery Pipeline
+Corneil du Plessis
+
+https://about.me/corneil
+
+== How do we get there?
+
+Working features coming out of a pipeline.
+
+Happy Users.
+
+== Deployment - Activities
+* Schema Migration
+* Data refactoring
+* Installations
+* Management of Cloud and Server stacks
+* Software Defined Networking
+* Provision Services
+
+== Deployment
+* Tools
+** Ansible
+** Liquibase
+* Languages
+** XML
+** YAML
+** DSL
+** Python
+** REST
+
+== Binary Repositories
+
+* Artifactory
+* Nexus
+* Docker Images
+
+== Build
+* Jenkins
+* Gradle
+* Maven
+
+== Test
+[%step]
+* Functional Testing
+* Integration Testing
+* Unit Testing
+
+== Develop
+* Gradle
+* Maven
+* IDE
+* Emacs
+* Git
+
+== Document
+* Asciidoctor
+
+== Design
+* PlantUML
+* Asciidoctor
+
+== Specify
+* PlantUML
+* Asciidoctor
+
+== Ideas
+
+Imagination
