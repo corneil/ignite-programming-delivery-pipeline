@@ -6,66 +6,257 @@ Corneil du Plessis
 
 https://about.me/corneil
 
-== How do we get there?
+[NOTE.speaker]
+--
+#1
+30 years ago a friend asked me over he wanted to show me his electronics project.
+--
+=== 30 years ago
 
-Working features coming out of a pipeline.
+image::heathkit.jpg[height=400]
 
-Happy Users.
+[NOTE.speaker]
+--
+#2
+He carefully unpacked an 8080 processor kit board and connected a cassette tape drive.
 
-== Deployment - Activities
-* Schema Migration
-* Data refactoring
-* Installations
-* Management of Cloud and Server stacks
+As we spoke he started typing on the hex keypad.
+--
+
+[%notitle]
+=== Bootloader
+
+```
+cd4321 21ff00 b80000 ca1243
+b02343 a01210 ce3221 cf3211
+```
+[NOTE.speaker]
+--
+#3
+After a while the cassette drive activated and loaded a program from tape.
+
+He he had actually typed in the bootloader because his cheapest kit board didn't have a BIOS.
+--
+=== Impressed
+[NOTE.speaker]
+--
+#4
+To say the least I was impressed that he entered the bootloader without error.
+
+I can't even remember the electronics project he wanted to show
+
+Move forward 16 years.
+--
+
+=== 2 O'Clock
+
+image::coffee-machine.jpg[height=400]
+
+[NOTE.speaker]
+--
+#5
+It is 2 O'clock on a sunday morning.
+
+The only thing that gets the weird taste out of your mouth is the plastic coffee from the machine.
+--
+=== Waiting for ...
+
+image::firewall-appliance.jpg[height=400]
+[NOTE.speaker]
+--
+#6
+We are waiting
+
+We are once again waiting for someone to fix some firewall rule or database table or LDAP directory
+--
+
+=== How many programmers does it take to change a light bulb?
+
+[NOTE.speaker]
+--
+#7
+Why can't the changes go smooth
+
+How do we change the world around us?
+
+We have some goal in mind.
+--
+
+[%notitle]
+=== change determine current state
+==== How do we change the world
+[arabic]
+. Determine current state
+
+[NOTE.speaker]
+--
+#8
+If our goal is to see and we cannot see because it is dark,
+we locate and flick the light switch
+--
+
+[%notitle]
+=== modify to expected state
+==== How do we change the world
+[arabic]
+. Determine current state
+. Modify to expected state
+
+[NOTE.speaker]
+--
+#9
+If the lights do come on we are happy.
+If it doesn't come on we search for a light bulb or check the Internet for the load shedding schedule
+--
+
+[%notitle]
+=== verify new state
+==== How do we change the world
+[arabic]
+. Determine current state
+. Modify to expected state
+. Verify new state
+
+[NOTE.speaker]
+--
+#10
+If we had to install a new bulb and it work when we turn if it on we are happy.
+We verified the new state.
+--
+
+[%notitle]
+=== verify operation
+==== How do we change the world
+[arabic]
+. Determine current state
+. Modify to expected state
+. Verify new state
+. Verify operation
+
+[NOTE.speaker]
+--
+#11
+We also make sure the light doesn't flicker, throw sparks or catches fire.
+We verified normal operation.
+--
+
+[%notitle]
+=== rollback on error
+==== How do we change the world
+[arabic]
+. Determine current state
+. Modify to expected state
+. Verify new state
+. Verify operation
+. Rollback on error
+
+[NOTE.speaker]
+--
+#12
+If there was a problem we would take out the bulb and try a new one.
+
+If it doesn't work we don't keep flicking the switch or replacing light bulbs or breaking the house down.
+--
+
+[%notitle]
+=== complex tasks by hand
+==== How do we change our software systems?
+
+[NOTE.speaker]
+--
+#13
+When changing our software systems we expect people to perform complex tasks perfectly by hand.
+We don't want some expert change the firewall or DBA updating tables.
+--
+
+[%notitle]
+=== automation
+==== How do we change our software systems?
+
+Handrolics or Automation?
+
+[NOTE.speaker]
+--
+#14
+If we just had something that could perform complex tasks repeatedly and accurately
+We do! It is called Software!
+--
+
+=== Change automation
+What is available?
+[NOTE.speaker]
+--
+#15
+We should have a simple command to execute or button to press to apply the changes.
+
+What is available right now for changing our systems without needing the expert to apply the change.
+--
+=== Networking
+* Programmable DNS
 * Software Defined Networking
-* Provision Services
+* Routers
 
-== Deployment
-* Tools
-** Ansible
-** Liquibase
-* Languages
-** XML
-** YAML
-** DSL
-** Python
-** REST
+[NOTE.speaker]
+--
+#16
+Most cloud infrastructure systems provide routers and some kind of software defined networking.
+You can add new hosts to the DNS and configure proper routes using a language like Python.
+--
 
-== Binary Repositories
+=== Database Migration
+* Liquibase
+* Flyway
+* Mongobee
+* Other
 
-* Artifactory
-* Nexus
-* Docker Images
+[NOTE.speaker]
+--
+#17
+You can safely migrate your database structure when rolling out a new version of a program.
+You can safely add new data and remove or modify existing data as needed.
+--
+=== Infrastructure Services
+==== Cloud Platforms
+* OpenStack
+* Cloud Foundry
 
-== Build
-* Jenkins
-* Gradle
-* Maven
+==== Immutable Servcers
+* Containers
+* Docker
+* Kubernetes
 
-== Test
-[%step]
-* Functional Testing
-* Integration Testing
-* Unit Testing
+[NOTE.speaker]
+--
+#18
+You do not want to try and deploy or update an application in an application server.
+You want to create new versions of your servers and start them when needed.
+Then we can easily start more if load demands
+--
+=== Automated Software changes
+* Ansible
+* Chef
+* Puppet
+[quote]
+====
+Infrastructure as Code (IaC)
+====
 
-== Develop
-* Gradle
-* Maven
-* IDE
-* Emacs
-* Git
+[NOTE.speaker]
+--
+#19
+You want to define rules, constraints, prerequisites and commands to determine the current state,
+to change to new state and to verify the end result.
 
-== Document
-* Asciidoctor
+You want to coordinate this over multiple servers, hosts and data centres.
+--
+[%notitle]
+=== impressed-not
+==== Impressed Not.
 
-== Design
-* PlantUML
-* Asciidoctor
-
-== Specify
-* PlantUML
-* Asciidoctor
-
-== Ideas
-
-Imagination
+[NOTE.speaker]
+--
+#20
+I am not impressed by heroic system administrators or heroic programmers
+I am not impressed by my friend typing the bootloader during our conversation
+I am horrified
+--
