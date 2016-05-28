@@ -75,9 +75,9 @@ We are once again waiting for someone to fix some firewall rule or database tabl
 [NOTE.speaker]
 --
 #7
-Why can't the changes go smooth
+Why can't the changes go smooth.
 
-How do we change the world around us?
+So how do we usually change the world around us?
 
 We have some goal in mind.
 --
@@ -92,7 +92,7 @@ We have some goal in mind.
 --
 #8
 If our goal is to see and we cannot see because it is dark,
-we locate and flick the light switch
+we locate and flick the light switch.
 --
 
 [%notitle]
@@ -120,7 +120,7 @@ If it doesn't come on we search for a light bulb or check the Internet for the l
 [NOTE.speaker]
 --
 #10
-If we had to install a new bulb and it work when we turn if it on we are happy.
+If we had to install a new bulb and it worked when we turned if it on we were happy.
 We verified the new state.
 --
 
@@ -136,7 +136,7 @@ We verified the new state.
 [NOTE.speaker]
 --
 #11
-We also make sure the light doesn't flicker, throw sparks or catches fire.
+We also make sure the light doesn't flicker, throws sparks or catches fire.
 We verified normal operation.
 --
 
@@ -155,7 +155,7 @@ We verified normal operation.
 #12
 If there was a problem we would take out the bulb and try a new one.
 
-If it doesn't work we don't keep flicking the switch or replacing light bulbs or breaking the house down.
+If it didn't work we don't keep flicking the switch or replacing light bulbs or breaking the house down.
 --
 
 [%notitle]
@@ -165,8 +165,8 @@ If it doesn't work we don't keep flicking the switch or replacing light bulbs or
 [NOTE.speaker]
 --
 #13
-When changing our software systems we expect people to perform complex tasks perfectly by hand.
-We don't want some expert change the firewall or DBA updating tables.
+So when changing our software systems we expect people to perform complex tasks perfectly by hand.
+Why? We don't want to rely on some expert to change the firewall or DBA updating tables by hand perfectly.
 --
 
 [%notitle]
@@ -178,8 +178,8 @@ Handrolics or Automation?
 [NOTE.speaker]
 --
 #14
-If we just had something that could perform complex tasks repeatedly and accurately
-We do! It is called Software!
+Won't it be more productive if a simple command and be used to do the job perfectly?
+If we just had some way to perform complex tasks computer tasks repeatedly and accurately.
 --
 
 === Change automation
@@ -189,31 +189,31 @@ What is available?
 #15
 We should have a simple command to execute or button to press to apply the changes.
 
-What is available right now for changing our systems without needing the expert to apply the change.
+When we deploy or update systems we need to make certain types of changes. I wonder how we can make this simple.
 --
 === Networking
 * Programmable DNS
 * Software Defined Networking
-* Routers
+* Routes and Routers
 
 [NOTE.speaker]
 --
 #16
-Most cloud infrastructure systems provide routers and some kind of software defined networking.
-You can add new hosts to the DNS and configure proper routes using a language like Python.
+We need to add new hosts to the DNS and configure proper routes and firewalls.
+I think a language like Python may be a good option.
 --
 
 === Database Migration
 * Liquibase
 * Flyway
 * Mongobee
-* Other
 
 [NOTE.speaker]
 --
 #17
-You can safely migrate your database structure when rolling out a new version of a program.
-You can safely add new data and remove or modify existing data as needed.
+We need to migrate your database structure when rolling out a new version of a program.
+We need to add new data and remove or modify existing data.
+We need to revert these changes without waiting for hours to restore a backup.
 --
 === Infrastructure Services
 ==== Cloud Platforms
@@ -228,9 +228,9 @@ You can safely add new data and remove or modify existing data as needed.
 [NOTE.speaker]
 --
 #18
-You do not want to try and deploy or update an application in an application server.
-You want to create new versions of your servers and start them when needed.
-Then we can easily start more if load demands
+We not want to try and deploy or update an application in an application server.
+We want to create new versions of our servers and start them when needed.
+We can then easily start more if load demands.
 --
 === Automated Software changes
 * Ansible
@@ -244,19 +244,20 @@ Infrastructure as Code (IaC)
 [NOTE.speaker]
 --
 #19
-You want to define rules, constraints, prerequisites and commands to determine the current state,
+We want to define prerequisites, rules, constraints, and commands that can determine the current state,
 to change to new state and to verify the end result.
 
-You want to coordinate this over multiple servers, hosts and data centres.
+And we want to coordinate this over multiple servers, hosts and data centres.
 --
 [%notitle]
 === impressed-not
 ==== Impressed Not.
+==== Horrified Yes.
 
 [NOTE.speaker]
 --
 #20
-I am not impressed by heroic system administrators or heroic programmers
+I am not impressed by fireman system administrators and programmers
 I am not impressed by my friend typing the bootloader during our conversation
 I am horrified
 --

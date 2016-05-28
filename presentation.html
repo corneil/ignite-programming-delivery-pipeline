@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Programming the Software Delivery Pipeline</title>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport">
+	<link href="reveal.js/css/reveal.css" rel="stylesheet">
+	<link rel="stylesheet" href="reveal_theme.css" id="theme">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+	<style type="text/css">
+		pre.code {
+			font-family: "Liberation Mono", Monospaced, monospace;
+			font-size: 0.8em;
+			width: 70%;
+		}
+
+		div.center-vert {
+			vertical-align: text-bottom;
+		}
+
+		.top-vert {
+			vertical-align: baseline;
+		}
+
+		section.present {
+			height: 95%;
+		}
+
+		div.full-slide {
+			height: 100%;
+		}
+
+		div.half-slide {
+			height: 40%;
+		}
+
+		p.large {
+			font-size: 1.6em;
+			font-family: "Source Sans Pro", Helvetica, sans-serif;
+			font-weight: 600;
+			letter-spacing: normal;
+			line-height: 1.2;
+			margin: 0 0 20px;
+			text-shadow: none;
+			text-transform: uppercase;
+		}
+	</style>
+	<link href="reveal.js/lib/css/zenburn.css" rel="stylesheet">
+	<script>document.write('<link rel="stylesheet" href="reveal.js/css/print/' +
+			( window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper' ) +
+			'.css" type="text/css" media="print">');</script>
+</head>
+<body>
+<div class="reveal">
+	<div class="slides">
+		<section>
+			<section id="programming-the-software-delivery-pipeline">
+				<h1>Programming the Software Delivery Pipeline</h1>
+				<p>Corneil du Plessis</p>
+				<p><a href="https://about.me/corneil" class="bare">https://about.me/corneil</a></p>
+				<aside class="notes">
+					<p>#1</p>
+					<p>30 years ago a friend asked me over he wanted to show me his electronics project.</p>
+				</aside>
+			</section>
+			<section id="30-years-ago">
+				<h2>30 years ago</h2>
+				<div class="imageblock">
+					<div class="content"><img src="images/heathkit.jpg" alt="heathkit" height="400"></div>
+				</div>
+				<aside class="notes">
+					<p>#2</p>
+					<p>He carefully unpacked an 8080 processor kit board and connected a cassette tape drive.</p>
+					<p>As we spoke he started typing on the hex keypad.</p>
+				</aside>
+			</section>
+			<section id="bootloader">
+				<div class="center-vert">
+<pre class="code">
+cd43 2121 ff00 b800 00ca 1243
+b023 43a0 1210 ce32 21cf 3211
+ec33 3030 300e 0000 b80b 000d
+eb67 300e 0000 b80b cc31 340e
+9922 0d07 da1b 00f5 d934 0e00
+cc2c 670d 07e9 1200 f5ac 672c
+0d07 f819 00fa 662b 310e 0000
+74cb ec33 3030 300e 0000 b80b
+4300 f178 3d78 612d 310e 0000
+3af1 7862 3d78 622d 310e 0834
+</pre>
+				</div>
+				<aside class="notes">
+					<p>#3</p>
+					<p>After a while the cassette drive activated and loaded a program from tape.</p>
+					<p>He had actually typed in the bootloader because his kit board didn't have an EPROM.</p>
+				</aside>
+			</section>
+			<section id="impressed">
+				<div class="half-slide">
+				</div>
+				<div class="center-vert">
+					<p class="large">Impressed</p>
+				</div>
+				<aside class="notes">
+					<p>#4</p>
+					<p>To say the least I was impressed that he entered the bootloader without error.</p>
+					<p>I can't even remember the electronics project he wanted to show</p>
+					<p>Move forward 16 years.</p>
+				</aside>
+			</section>
+			<section id="2-o-clock">
+				<h2>2 O'Clock</h2>
+				<div class="imageblock">
+					<div class="content"><img src="images/coffee-machine.jpg" alt="coffee machine" height="400"></div>
+				</div>
+				<aside class="notes">
+					<p>#5</p>
+					<p>It is 2 O'clock on a sunday morning.</p>
+					<p>The only thing that gets the weird taste out of your mouth is the plastic coffee from the machine.</p>
+				</aside>
+			</section>
+			<section id="waiting-for">
+				<h2>Waiting for ...</h2>
+				<div class="imageblock">
+					<div class="content"><img src="images/firewall-appliance.jpg" alt="firewall appliance" height="400"></div>
+				</div>
+				<aside class="notes">
+					<p>#6<p>
+					<p>We are waiting</p>
+					<p>We are once again waiting for someone to fix some firewall rule or database table or LDAP directory</p>
+				</aside>
+			</section>
+			<section id="how-many-programmers-does-it-take-to-change-a-light-bulb">
+				<div class="half-slide">
+				</div>
+				<div class="center-vert">
+					<p class="large">How many programmers does it take to change a light bulb?</p>
+				</div>
+				<aside class="notes">
+					<p>#7</p>
+					<p>Why can&#8217;t the changes go smooth.</p>
+					<p>So how do we usually change the world around us?</p>
+					<p>We have some goal in mind.</p>
+				</aside>
+			</section>
+			<section id="change-determine-current-state" class="top-vert">
+				<h3>How do we change the world</h3>
+				<div class="olist arabic">
+					<ol class="arabic">
+						<li><p>Determine current state</p></li>
+					</ol>
+				</div>
+				<aside class="notes">
+					<p>#8</p>
+					<p>If our goal is to see and we cannot see because it is dark,
+						we locate and flick the light switch.</p>
+				</aside>
+			</section>
+			<section id="modify-to-expected-state">
+				<h3>How do we change the world</h3>
+				<div class="olist arabic">
+					<ol class="arabic">
+						<li><p>Determine current state</p></li>
+						<li><p>Modify to expected state</p></li>
+					</ol>
+				</div>
+				<aside class="notes">
+					<p>#9</p>
+					<p>If the lights do come on we are happy.</p>
+					<p>If it doesn't come on we search for a light bulb or check the Internet for the load shedding schedule</p>
+				</aside>
+			</section>
+			<section id="verify-new-state">
+				<h3>How do we change the world</h3>
+				<div class="olist arabic">
+					<ol class="arabic">
+						<li><p>Determine current state</p></li>
+						<li><p>Modify to expected state</p></li>
+						<li><p>Verify new state</p></li>
+					</ol>
+				</div>
+				<aside class="notes">
+					<p>#10</p>
+					<p>If we had to install a new bulb and it worked when we turned if it on we were happy.</p>
+					<p>We verified the new state.</p>
+				</aside>
+			</section>
+			<section id="verify-operation">
+				<h3>How do we change the world</h3>
+				<div class="olist arabic">
+					<ol class="arabic">
+						<li><p>Determine current state</p></li>
+						<li><p>Modify to expected state</p></li>
+						<li><p>Verify new state</p></li>
+						<li><p>Verify operation</p></li>
+					</ol>
+				</div>
+				<aside class="notes">
+					<p>#11</p>
+					<p>We also make sure the light doesn't flicker, throws sparks or catches fire.</p>
+					<p>We verified normal operation.</p>
+				</aside>
+			</section>
+			<section id="rollback-on-error">
+				<h3>How do we change the world</h3>
+				<div class="olist arabic">
+					<ol class="arabic">
+						<li><p>Determine current state</p></li>
+						<li><p>Modify to expected state</p></li>
+						<li><p>Verify new state</p></li>
+						<li><p>Verify operation</p></li>
+						<li><p>Rollback on error</p></li>
+					</ol>
+				</div>
+				<aside class="notes">
+					<p>#12</p>
+					<p>If there was a problem we would take out the bulb and try a new one.</p>
+					<p>If it didn't work we don't keep flicking the switch or replacing light bulbs or breaking the house down.</p>
+				</aside>
+			</section>
+			<section id="complex-tasks-by-hand">
+				<h3>How do we change our software systems?</h3>
+				<aside class="notes">
+					<p>#13</p>
+					<p>So when changing our software systems we expect people to perform complex tasks perfectly by hand.</p>
+					<p>Why? We don't want to rely on some expert to change the firewall or DBA updating tables by hand perfectly.</p>
+				</aside>
+			</section>
+			<section id="automation">
+				<h3>How do we change our software systems?</h3>
+				<p>Handrolics or Automation?</p>
+				<aside class="notes">
+					<p>#14</p>
+					<p>Won't it be more productive if a simple command and be used to do the job perfectly?</p>
+					<p>If we just had some way to perform complex tasks computer tasks repeatedly and accurately.</p>
+				</aside>
+			</section>
+			<section id="change-automation">
+				<h2>Change automation</h2>
+				<p>What can be done?</p>
+				<aside class="notes">
+					<p>#15</p>
+					<p>We should have a simple command to execute or button to press to apply the changes.</p>
+					<p>When we deploy or update systems we need to make certain types of changes. I wonder how we can make this simple.</p>
+				</aside>
+			</section>
+			<section id="networking">
+				<h2>Networking</h2>
+				<div class="ulist">
+					<ul>
+						<li><p>Programmable DNS</p></li>
+						<li><p>Software Defined Networking</p></li>
+						<li><p>Routes and Routers</p></li>
+					</ul>
+				</div>
+				<aside class="notes">
+					<p>#16</p>
+					<p>We need to add new hosts to the DNS and configure proper routes and firewalls.</p>
+					<p>I think a language like Python may be a good option.</p>
+				</aside>
+			</section>
+			<section id="database-migration">
+				<h2>Database Migration</h2>
+				<div class="ulist">
+					<ul>
+						<li><p>Liquibase</p></li>
+						<li><p>Flyway</p></li>
+						<li><p>Mongobee</p></li>
+					</ul>
+				</div>
+				<aside class="notes">
+					<p>#17</p>
+					<p>We need to migrate your database structure when rolling out a new version of a program.</p>
+					<p>We need to add new data and remove or modify existing data.</p>
+					<p>We need to revert these changes without waiting for hours to restore a backup.</p>
+				</aside>
+			</section>
+			<section id="infrastructure-services">
+				<h2>Infrastructure Services</h2>
+				<h3>Cloud Platforms</h3>
+				<div class="ulist">
+					<ul>
+						<li><p>OpenStack</p></li>
+						<li><p>Cloud Foundry</p></li>
+					</ul>
+				</div>
+				<h3>Immutable Servers</h3>
+				<div class="ulist">
+					<ul>
+						<li><p>Containers</p></li>
+						<li><p>Docker</p></li>
+						<li><p>Kubernetes</p></li>
+					</ul>
+				</div>
+				<aside class="notes">
+					<p>#18</p>
+					<p>We not want to try and deploy or update an application in an application server.</p>
+					<p>We want to create new versions of our servers and start them when needed.</p>
+					<p>We can then easily start more if load demands.</p>
+				</aside>
+			</section>
+			<section id="automated-software-changes">
+				<h2>Automate software change</h2>
+				<div class="ulist">
+					<ul>
+						<li><p>Ansible</p></li>
+						<li><p>Chef</p></li>
+						<li><p>Puppet</p></li>
+					</ul>
+				</div>
+				<p>Infrastructure as Code (IaC)</p>
+				<aside class="notes">
+					<p>#19</p>
+					<p>We want to define prerequisites, rules, constraints, and commands that can determine the current state, to change to new state and to verify the end result.</p>
+					<p>And we want to coordinate this over multiple servers, hosts and data centres.</p>
+				</aside>
+			</section>
+			<section id="impressed-not">
+				<div class="half-slide">
+				</div>
+				<div class="center-vert">
+					<p class="large">Impressed: No.</p>
+					<p class="large">Horrified: Yes.</p>
+				</div>
+				<aside class="notes">
+					<p>#20</p>
+					<p>I am not impressed by fireman system administrators and programmers</p>
+					<p>I am not impressed by my friend typing the bootloader during our conversation</p>
+					<p>I am horrified</p>
+				</aside>
+			</section>
+		</section>
+	</div>
+</div>
+<script src="reveal.js/lib/js/head.min.js"></script>
+<script src="reveal.js/js/reveal.js"></script>
+<script>// See https://github.com/hakimel/reveal.js#configuration for a full list of configuration options
+Reveal.initialize({
+	// Display controls in the bottom right corner
+	controls: true,
+	// Display a presentation progress bar
+	progress: true,
+	// Display the page number of the current slide
+	slideNumber: false,
+	// Push each slide change to the browser history
+	history: false,
+	// Enable keyboard shortcuts for navigation
+	keyboard: true,
+	// Enable the slide overview mode
+	overview: true,
+	// Vertical centering of slides
+	center: false,
+	// Enables touch navigation on devices with touch input
+	touch: true,
+	// Loop the presentation
+	loop: false,
+	// Change the presentation direction to be RTL
+	rtl: false,
+	// Turns fragments on and off globally
+	fragments: true,
+	// Flags if the presentation is running in an embedded mode,
+	// i.e. contained within a limited portion of the screen
+	embedded: false,
+	// Number of milliseconds between automatically proceeding to the
+	// next slide, disabled when set to 0, this value can be overwritten
+	// by using a data-autoslide attribute on your slides
+	autoSlide: 15000,
+	// Stop auto-sliding after user input
+	autoSlideStoppable: true,
+	// Enable slide navigation via mouse wheel
+	mouseWheel: false,
+	// Hides the address bar on mobile devices
+	hideAddressBar: true,
+	// Opens links in an iframe preview overlay
+	previewLinks: false,
+	// Theme (e.g., beige, black, league, night, serif, simple, sky, solarized, white)
+	// NOTE setting the theme in the config no longer works in reveal.js 3.x
+	//theme: Reveal.getQueryHash().theme || 'black',
+	// Transition style (e.g., none, fade, slide, convex, concave, zoom)
+	transition: Reveal.getQueryHash().transition || 'none',
+	// Transition speed (e.g., default, fast, slow)
+	transitionSpeed: 'fast',
+	// Transition style for full page slide backgrounds (e.g., none, fade, slide, convex, concave, zoom)
+	backgroundTransition: 'none',
+	// Number of slides away from the current that are visible
+	viewDistance: 3,
+	// Parallax background image (e.g., "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'")
+	parallaxBackgroundImage: '',
+	// Parallax background size in CSS syntax (e.g., "2100px 900px")
+	parallaxBackgroundSize: '',
+
+	// The "normal" size of the presentation, aspect ratio will be preserved
+	// when the presentation is scaled to fit different resolutions. Can be
+	// specified using percentage units.
+	width: 960,
+	height: 700,
+
+	// Factor of the display size that should remain empty around the content
+	margin: 0.1,
+
+	// Bounds for smallest/largest possible scale to apply to content
+	minScale: 0.2,
+	maxScale: 1.5,
+
+	// Optional libraries used to extend on reveal.js
+	dependencies: [
+		{
+			src: 'reveal.js/lib/js/classList.js', condition: function () {
+			return !document.body.classList;
+		}
+		},
+		{
+			src: 'reveal.js/plugin/markdown/marked.js', condition: function () {
+			return !!document.querySelector('[data-markdown]');
+		}
+		},
+		{
+			src: 'reveal.js/plugin/markdown/markdown.js', condition: function () {
+			return !!document.querySelector('[data-markdown]');
+		}
+		},
+
+		{
+			src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function () {
+			return !!document.body.classList;
+		}
+		},
+		{
+			src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function () {
+			return !!document.body.classList;
+		}
+		}
+	]
+});</script>
+</body>
+</html>
